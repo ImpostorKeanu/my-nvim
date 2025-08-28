@@ -6,7 +6,8 @@ return {
     "leoluz/nvim-dap-go",
     ft = "go",
     keys = {
-      { "<leader>dgt", "<cmd>lua require('dap-go').debug_test()<cr>", desc = "Debug Go test" },
+      { "<leader>Godbt", "<cmd>lua require('dap-go').debug_test()<cr>", desc = "Debug Go test" },
+      { "<leader>Godblt", "<cmd>lua require('dap-go').debug_last_test()<cr>", desc = "Debug Go test" },
     },
   },
 }
