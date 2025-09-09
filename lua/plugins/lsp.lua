@@ -41,6 +41,7 @@ return {
             },
           },
         },
+        superhtml = {},
       },
       setup = {
         gopls = function(_, opts)
