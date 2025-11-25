@@ -4,6 +4,7 @@ return {
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-nvim-lsp-signature-help", -- lsp signature completion engine source
   "hrsh7th/cmp-cmdline", -- command line completion engine source
+  "saadparwaiz1/cmp_luasnip",
   {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
@@ -15,6 +16,11 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp-signature-help", -- lsp signature completion engine source
       "hrsh7th/cmp-cmdline", -- command line completion engine source
+      "L3MON4D3/LuaSnip",
+      {
+        "samiulsami/cmp-go-deep",
+        dependencies = { "kkharji/sqlite.lua" },
+      },
     },
     -- Not all LSP servers add brackets when completing a function.
     -- To better deal with this, LazyVim adds a custom option to cmp,
@@ -29,10 +35,10 @@ return {
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
-      local auto_select = true
+      local auto_select = false
       return {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body)
+          require("cmp_luasnip").lsp_expand(args.body)
         end,
         window = {
           completion = cmp.config.window.bordered(),
@@ -40,7 +46,8 @@ return {
         },
         auto_brackets = {}, -- configure any filetype to auto add brackets
         completion = {
-          completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+          -- completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+          completeopt = "menu,menuone,noinsert,noselect",
         },
         preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
@@ -62,7 +69,6 @@ return {
         }),
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
         cmp.setup.cmdline({ "/", "?" }, {
-          mapping = cmp.mapping.preset.cmdline(),
           sources = {
             { name = "buffer" },
           },
@@ -80,7 +86,7 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
-          { name = "nvm_lsp_signature_help" },
+          { name = "nvim_lsp_signature_help" },
           { name = "buffer" },
           {
             name = "go_deep",
