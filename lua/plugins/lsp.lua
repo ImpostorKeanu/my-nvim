@@ -1,8 +1,31 @@
+local schemas = {}
+schemas["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = {
+  ".gitlab-ci.yml",
+  ".gitlab-ci.yaml",
+  ".gitlab/ci/*.yml",
+  ".gitlab/ci/*.yaml",
+}
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        yamlls = {
+          settings = {
+            yaml = {
+              schemaStore = {
+                enable = true,
+                url = "https://www.schemastore.org/api/json/catalog.json",
+              },
+              schemas = schemas,
+              customTags = {
+                "!reference scalar",
+                "!reference sequence",
+                "!reference mapping",
+              },
+            },
+          },
+        },
         -- Golang configurations
         gopls = {
           settings = {
