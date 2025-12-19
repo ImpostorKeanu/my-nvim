@@ -17,10 +17,10 @@ return {
       "hrsh7th/cmp-nvim-lsp-signature-help", -- lsp signature completion engine source
       "hrsh7th/cmp-cmdline", -- command line completion engine source
       "L3MON4D3/LuaSnip",
-      {
-        "samiulsami/cmp-go-deep",
-        dependencies = { "kkharji/sqlite.lua" },
-      },
+      -- {
+      --   "samiulsami/cmp-go-deep",
+      --   dependencies = { "kkharji/sqlite.lua" },
+      -- },
     },
     -- Not all LSP servers add brackets when completing a function.
     -- To better deal with this, LazyVim adds a custom option to cmp,
