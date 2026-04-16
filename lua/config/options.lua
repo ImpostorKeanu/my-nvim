@@ -15,6 +15,7 @@ vim.filetype.add({
     -- within go template files
     -- see: queries/gohtml/injections.scm
     gohtml = "gotmpl",
+    cue = "cue",
   },
 })
 
@@ -25,5 +26,4 @@ vim.opt.secure = true -- require that per-project rc files are trusted (see :h t
 -- CLIPBOARD BEHAVIOR
 -- vim.opt.clipboard = "unnamedplus" -- enable clipboard nonsense
 vim.opt.clipboard = "" -- disable clipboard nonsense
-
 vim.opt.completeopt = "menu,menuone,noselect,preview"

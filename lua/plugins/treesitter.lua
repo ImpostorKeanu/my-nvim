@@ -3,6 +3,7 @@ return {
     "nvim-treesitter",
     opts = {
       ensure_installed = {
+        -- "cue",
         "lua",
         "yaml",
         "bash",
