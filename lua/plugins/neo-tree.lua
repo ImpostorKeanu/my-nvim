@@ -1,3 +1,6 @@
+-- prevent detection of project root directory
+-- this ensures that neo-tree presents all files
+vim.g.root_spec = { "cwd" }
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -61,7 +64,16 @@ return {
       open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
       filesystem = {
         bind_to_cwd = false,
-        follow_current_file = { enabled = true },
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = true,
+        },
+        filtered_items = {
+          visible = true,
+          -- hide_dotfiles = false,
+          -- hide_gitignored = false,
+          -- hide_ignored = false,
+        },
         use_libuv_file_watcher = true,
       },
       window = {
