@@ -1,0 +1,3 @@
+[submodule "tree-sitter-go-template-gtemp"]
+	path = tree-sitter-go-template-gtemp
+	url = https://github.com/ngalaiko/tree-sitter-go-template
