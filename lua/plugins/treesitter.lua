@@ -1,4 +1,5 @@
-local gtemp_filetypes = {
+local filetypes = {
+  "cue",
   "yaml_gotmpl",
   "json_gotmpl",
   "toml_gotmpl",
@@ -6,7 +7,7 @@ local gtemp_filetypes = {
 }
 
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
-  pattern = gtemp_filetypes,
+  pattern = filetypes,
   callback = function(args)
     vim.schedule(function()
       if not vim.api.nvim_buf_is_valid(args.buf) then
