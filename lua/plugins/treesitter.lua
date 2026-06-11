@@ -38,7 +38,14 @@ return {
         pattern = "TSUpdate",
         callback = function()
           local parsers = require("nvim-treesitter.parsers")
-          local repo = vim.fn.expand("~/.config/nvim/tree-sitter-go-template-gtemp")
+
+          --=============================================
+          -- CONFIGURE LOCATION OF CUSTOM GOTMPL DIALECTS
+          --=============================================
+          -- this is for highlighting of languages injected into
+          -- golang templates, i.e., a golang template with yaml
+
+          local repo = vim.fn.expand("~/.config/nvim/tree-sitter")
           parsers.html_gotmpl = {
             install_info = {
               path = repo,
@@ -86,16 +93,16 @@ return {
           "go",
           "gotmpl",
           "gomod",
+          -- go template (gotmpl) file formats
+          "html_gotmpl",
+          "yaml_gotmpl",
+          "json_gotmpl",
           -- python
           "python",
           -- webdev
           "html",
           "css",
           "javascript",
-          -- gotmpl file formats
-          "html_gotmpl",
-          "yaml_gotmpl",
-          "json_gotmpl",
         }
     end,
   },
