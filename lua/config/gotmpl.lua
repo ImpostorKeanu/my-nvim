@@ -35,7 +35,7 @@ function get_gotmpl_parser(path, bufnr)
 
   local lead = fileName:match("^(.+)%.")
   local envLeads = { env = true, environ = true, environment = true }
-  if lead and envLeads then
+  if lead and envLeads[lead] then
     return "bash_gotmpl"
   end
 
