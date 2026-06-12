@@ -11,6 +11,7 @@ local langs = {
   bash = "bash",
   sh = "bash",
   env = "bash",
+  cue = "cue",
 }
 
 local aliases = {
@@ -31,6 +32,12 @@ local aliases = {
 -- on where things are stored.
 function get_gotmpl_parser(path, bufnr)
   local fileName = vim.fn.fnamemodify(path, ":t")
+
+  local lead = fileName:match("^(.+)%.")
+  local envLeads = { env = true, environ = true, environment = true }
+  if lead and envLeads then
+    return "bash_gotmpl"
+  end
 
   local ext = fileName:match("^.+%.(.+)$")
   ext = ext and aliases[ext]

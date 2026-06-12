@@ -53,4 +53,11 @@ tree-sitter generate ../tree-sitter/dialects/$LANG_gotmpl/grammar.js \
   -o ../tree-sitter/dialects/$LANG_gotmpl/src
 cd ..
 
+# create a filetype plugin to start treesitter for the
+# the file type
+#
+# this ensures that the buffer will be highlighted upon
+# load
+cp after/ftplugin/bash_gotmpl.lua after/ftplugin/$LANG_gotmpl.lua
+sed -r -e "s|bash|$LANG|g" -i after/ftplygin/$LANG_gotmpl.lua
 ```
